@@ -7,7 +7,7 @@
         //var latValue = "40.7128"; // Set the desired latitude value
         //var lonValue = "74.0060"; // Set the desired longitude value
 
-        var fetchUrl = "https://10.7.0.1:4009/Home/SendMessage?lat=" + latValue + "&lon=" + lonValue;
+        var fetchUrl = "https://192.168.10.3:4000/Home/SendMessage?lat=" + latValue + "&lon=" + lonValue;
 
         fetch(fetchUrl)
             .then((res) => res.json())
