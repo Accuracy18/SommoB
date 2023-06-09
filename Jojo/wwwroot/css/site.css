@@ -1,0 +1,19 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-image: src(https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Ffree-backgrounds-photos%2Fweather&psig=AOvVaw2144SEM6KvQsyJ5U6M8dpx&ust=1685637867974000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCIjH4eiooP8CFQAAAAAdAAAAABAE);
+}

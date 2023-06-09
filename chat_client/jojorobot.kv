@@ -1,0 +1,31 @@
+<JojoRobotRoot>:
+	orientation: "vertical"
+
+	GridLayout:
+		cols: 1
+		
+		ScrollView:
+			id: scroll_x
+			size_hint: (1, None)
+			
+			GridLayout:
+				id: grid_x
+				cols: 1
+				spacing: 5
+				size_hint_y: None
+				height: self.minimum_height
+		
+	TextInput:
+		multiline: False
+		size_hint: (1, None)
+		height: "50dp"
+		on_text_validate: root.post_stuff(chat=self)
+
+<TextAdd@Label>:
+	red: 1
+	green: 0
+	blue: 0
+	
+	size_hint: (1, None)
+	text_size: self.size
+	color: [self.red, self.green, self.blue, 0.75]

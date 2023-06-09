@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<script>
+    function getData(latValue, lonValue, className) {
+        //var latValue = "40.7128"; // Set the desired latitude value
+        //var lonValue = "74.0060"; // Set the desired longitude value
+
+        var fetchUrl = "https://10.7.0.1:4009/Home/SendMessage?lat=" + latValue + "&lon=" + lonValue;
+
+        fetch(fetchUrl)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                document.getElementsByClassName(className)[0].innerHTML = className + "        ";
+                document.getElementsByClassName(className)[1].innerHTML = "TimeZone: " + data.timezone;
+                document.getElementsByClassName(className)[2].innerHTML = "Temperature: " + data.current['temperature'];
+                document.getElementsByClassName(className)[3].innerHTML = "Pressure: " + data.current['pressure'];
+                document.getElementsByClassName(className)[4].innerHTML = "Humidity: " + data.current['humidity'];
+                document.getElementsByClassName(className)[5].innerHTML = "Weather: " + data.current['summary'];
+            });
+    }
+</script>
+
+
+<p id="timex"></p> 
+<div class="text-center">
+    <h1 class="display-4">That One Weather Website</h1>
+</div>
+
+
+
+@{
+    string[] myArray = new string[] { "New-York", "London", "Lagos", "Cape-Town", "Brasilia", "Cairo", "Castries", "Jerusalem", "Kigali", "Lusaka", "Lima", "Mexico-City", "Lome", "New-Delhi"};
+}
+@foreach (string item in myArray){
+    <div id="givemestyle">
+        @for (int i = 0; i < 6; i++){
+            if (i == 0){
+                <p class=@item id="names"></p>
+            }
+
+            <p class=@item></p>
+        }
+    </div>
+
+    <style>
+        .@item {
+            display: inline-block;
+            position: relative;
+            margin-left: 20px;
+        }
+
+        #names{
+            font-style: italic;
+            font-size: 25px;
+        }
+
+        #givemestyle{
+            background-color: chocolate;
+            border-style: outset;
+            position: relative;
+            margin-left: 20px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+    </style>
+}
+
+<script>
+    getData("51.5073359", "-74.005974", "New-York");
+    getData("40.712776", "-0.12765", "London");
+    getData("6.4550575", "3.3941795", "Lagos");
+
+    getData("-33.928992", "18.417396", "Cape-Town");
+    getData("-10.3333333", "-53.2", "Brasilia");
+    getData("30.0443879", "31.2357257", "Cairo");
+
+    getData("43.6779101", "3.9868904", "Castries");
+    getData("31.7788242", "35.2257626", "Jerusalem");
+    getData("-1.950851", "30.061507", "Kigali");
+
+    getData("-15.4163395", "28.2818414", "Lusaka");
+    getData("-12.0621065", "-77.0365256", "Lima");
+    getData("19.4326296", "-99.1331785", "Mexico-City");
+
+    getData("6.130419", "1.215829", "Lome");
+    getData("28.6138954", "77.2090057", "New-Delhi");
+    getData("18.547327", "-72.3395928", "Port-au-Prince");
+
+    getData("24.638916", "46.7160104", "Riyadh");
+    getData("64.145981", "-21.9422367", "Reykjavík");
+    getData("52.2337172", "21.0714322", "Warsaw");
+</script>
+
+

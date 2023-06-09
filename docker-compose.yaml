@@ -1,0 +1,65 @@
+services:
+    chat_client:
+        build: .
+        image: microsoft
+        tty: true
+        working_dir: /root/chat_client
+        network_mode: host
+
+        environment:
+            - DISPLAY::0
+            
+        volumes:
+            - ./chat_client:/root/chat_client
+
+        command: python3 simple_app.py
+            
+    chat_gpt:
+        build: .
+        image: microsoft
+        container_name: gpt
+        tty: true
+        working_dir: /root/website
+        network_mode: host
+        
+        # ports:
+            # - 4009:4000       # HTTPs
+# 
+        # networks:
+            # front_random_network:
+                # ipv4_address: 192.168.30.5
+
+        environment:
+            - DOTNET_CLI_TELEMETRY_OPTOUT:true
+            
+        volumes:
+            - ./Jojo:/root/website
+          
+        command: dotnet run
+
+    weather:
+        build: .
+        image: microsoft
+        container_name: weather
+        tty: true
+        working_dir: /root/explore
+        network_mode: host
+        # ports:
+            # - 4010:4000       # HTTPs
+# 
+        # networks:
+            # front_random_network:
+                # ipv4_address: 192.168.30.6
+
+        environment:
+            - DOTNET_CLI_TELEMETRY_OPTOUT:true
+            
+        volumes:
+            - ./WeatherApp:/root/explore
+
+        command: dotnet run
+
+networks:
+    front_random_network:
+        external: true
+        name: random_net
